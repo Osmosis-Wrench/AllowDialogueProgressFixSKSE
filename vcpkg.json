@@ -1,0 +1,21 @@
+{
+  "name": "exampleplugin",
+  "version-string": "1.3.0",
+  "description": "exampleplugin for po3 fork",
+  "homepage": "",
+  "license": "MIT",
+  "dependencies": [
+    "boost-stl-interfaces",
+    "simpleini",
+    "spdlog",
+    "xbyak",
+    "rsm-binary-io"
+  ],
+  "builtin-baseline": "c06dfc0ac2649834da8b9f3092b907fb037accab",
+  "overrides": [
+    {
+      "name": "fmt",
+      "version": "8.0.1"
+    }
+  ]
+}
