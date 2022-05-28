@@ -1,12 +1,12 @@
 cmake_minimum_required(VERSION 3.20)
-set(NAME "exampleplugin")
+set(NAME "allowdialogueprogressfix")
 set(VERSION 1.0.0)
 set(VR_VERSION 1)
 set(AE_VERSION 1)
 
 # ---- Options ----
 
-option(COPY_BUILD "Copy the build output to the Skyrim directory." TRUE)
+option(COPY_BUILD "Copy the build output to the Skyrim directory." OFF)
 option(BUILD_SKYRIMVR "Build for Skyrim VR" OFF)
 option(BUILD_SKYRIMAE "Build for Skyrim AE" OFF)
 
@@ -77,7 +77,7 @@ set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>" CACHE STR
 # ---- Project ----
 
 project(
-	exampleplugin
+	allowdialogueprogressfix
 	VERSION 1.0.0
 	LANGUAGES CXX
 )
@@ -176,7 +176,10 @@ add_library(
 	${sources}
 	${CMAKE_CURRENT_BINARY_DIR}/include/Version.h
 	${CMAKE_CURRENT_BINARY_DIR}/version.rc
-	.clang-format)
+	.clang-format 
+	"src/DialogueMenu.cpp"
+	"src/DialogueMenu.hpp" 
+	"src/Settings.h"  "src/Settings.cpp")
 
 target_compile_features(
 	${PROJECT_NAME}

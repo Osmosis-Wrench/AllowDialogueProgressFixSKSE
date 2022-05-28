@@ -1,8 +1,11 @@
+#include "DialogueMenu.hpp"
+#include "Settings.h"
+
 #ifdef SKYRIM_AE
 extern "C" DLLEXPORT constinit auto SKSEPlugin_Version = []() {
 	SKSE::PluginVersionData v;
 	v.PluginVersion(Version::MAJOR);
-	v.PluginName("examplePlugin");
+	v.PluginName("AllowDialogueProgressFixSKSE");
 	v.AuthorName("OsmosisWrench");
 	v.UsesAddressLibrary(true);
 	v.CompatibleVersions({ SKSE::RUNTIME_LATEST });
@@ -31,7 +34,7 @@ extern "C" DLLEXPORT bool SKSEAPI SKSEPlugin_Query(const SKSE::QueryInterface* a
 	logger::info(FMT_STRING("{} v{}"), Version::PROJECT, Version::NAME);
 
 	a_info->infoVersion = SKSE::PluginInfo::kVersion;
-	a_info->name = "examplePlugin";
+	a_info->name = "AllowDialogueProgressFixSKSE";
 	a_info->version = Version::MAJOR;
 
 	if (a_skse->IsEditor()) {
@@ -54,6 +57,10 @@ extern "C" DLLEXPORT bool SKSEAPI SKSEPlugin_Load(const SKSE::LoadInterface* a_s
 	logger::info("loaded plugin");
 
 	SKSE::Init(a_skse);
+
+	if (Settings::GetSingleton()->Load()) {
+		Fix::DialogueMenuEx::Install();
+	}
 
 	return true;
 }
